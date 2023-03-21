@@ -1,0 +1,2 @@
+#
+alias config='/usr/bin/git --git-dir=/home/leons/.cfg/ --work-tree=/home/leons'
