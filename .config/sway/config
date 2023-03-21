@@ -34,7 +34,7 @@ set $menu wofi --show run -Iib -l 5 -W 500 -x -10 -y -51
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/Pictures/Wallpapers/wpoldnew2.png fill
+output * bg ~/.config/wallpaper/surfacewp.png fill
 
 # Remove all borders from applications
 default_border pixel 1
