@@ -1,0 +1,130 @@
+// -*- mode: json -*-
+
+{
+	"layer": "top",
+	"position": "top",
+        "height": 20,
+
+	"modules-left": [
+		"sway/workspaces",
+		"custom/outer-right-arrow-dark",
+                "sway/window"
+	],
+	"modules-center": ["sway/mode"],
+	"modules-right": [
+                "custom/outer-left-arrow-dark",
+		"custom/spotify",
+                "custom/left-arrow-light",
+		"pulseaudio",
+		"custom/left-arrow-dark",
+		"memory",
+		"custom/left-arrow-light",
+		"cpu",
+		"custom/left-arrow-dark",
+		"battery",
+		"custom/left-arrow-light",
+		"disk",
+		"custom/left-arrow-dark",
+		"tray",
+                "custom/left-arrow-light",
+                "clock#2",
+                "custom/left-arrow-dark",
+                "clock#1"
+	],
+	"sway/mode": {
+                "format": "<span style=\"italic\" font-weight=\"bold\">{}</span>"
+        },
+        "custom/spotify": {
+                "exec": "/usr/bin/python3 ~/.config/waybar/resources/custom_modules/mediaplayer.py --player spotify",
+                "format": "  {}",
+                "return-type": "json",
+                "on-click": "playerctl play-pause"
+                //"on-scroll-up": "playerctl next"
+                //"on-scroll-down": "playerctl previous"
+        },
+	"custom/left-arrow-dark": {
+		"format": "",
+		"tooltip": false
+	},
+        "custom/outer-left-arrow-dark": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/left-arrow-light": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/right-arrow-dark": {
+		"format": "",
+		"tooltip": false
+	},
+        "custom/outer-right-arrow-dark": {
+                "format": "",
+		"tooltip": false
+	},
+	"custom/right-arrow-light": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"sway/workspaces": {
+		"disable-scroll": true,
+		"format": "{name}"
+	},
+
+	"clock#1": {
+                 "tooltip-format": "{:%Y-%m-%d | %H:%M}"
+        },
+	
+        "clock#2": {
+		"format": "{:%d. %B %Y}"
+	},
+
+
+	"pulseaudio": {
+		"format": "{icon} {volume:2}%",
+		"format-bluetooth": "{icon}  {volume}%",
+		"format-muted": "MUTE",
+		"format-icons": {
+			"headphones": "",
+			"default": [
+				"",
+				""
+			]
+		},
+		"scroll-step": 5,
+		"on-click": "pamixer -t",
+		"on-click-right": "pavucontrol"
+	},
+	"memory": {
+		"interval": 5,
+		"format": "MEM {}%"
+	},
+	"cpu": {
+		"interval": 5,
+		"format": "CPU {usage:2}%"
+	},
+	"battery": {
+		"states": {
+			"good": 95,
+			"warning": 30,
+			"critical": 15
+		},
+		"format": "{icon} {capacity}%",
+		"format-icons": [
+			"",
+			"",
+			"",
+			"",
+			""
+		]
+	},
+	"disk": {
+		"interval": 5,
+		"format": "Disk {percentage_used:2}%",
+		"path": "/"
+	},
+	"tray": {
+		"icon-size": 20
+	}
+}
