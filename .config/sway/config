@@ -292,12 +292,6 @@ mode $exit {
 
 bindsym --to-code $mod+x mode $exit
 
-input * {
-   xkb_layout "us"
-   xkb_variant "intl"
-   xkb_options "grp:win_space_toggle"
-}
-
 for_window [app_id="python3"] floating enable
 for_window [app_id="blueman"] floating enable
 

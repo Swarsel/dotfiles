@@ -1,0 +1,6 @@
+
+input * {
+   xkb_layout "de"
+   xkb_options "grp:win_space_toggle"
+}
+
