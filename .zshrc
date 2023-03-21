@@ -1,0 +1,1 @@
+source $HOME/.zsh/aliases
