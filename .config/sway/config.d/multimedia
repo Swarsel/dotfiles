@@ -1,0 +1,21 @@
+# Backlight
+# PLEASE NOTE: Light has a small issue with SUID, you should install the version
+# that allows the user to run it without SUID
+bindsym $mod+F1 exec light -U 5
+bindsym $mod+F2 exec light -A 5
+
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+
+# Mediaplayer controls
+    bindsym XF86AudioPlay exec playerctl play-pause
+    bindsym $mod+f5 exec playerctl previous
+    bindsym $mod+f6 exec playerctl next
+    
+
+# Screenshot
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec hash dbus-update-activation-environment 2>/dev/null && \
+     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+bindsym $mod+S exec flameshot gui
