@@ -298,12 +298,13 @@ for_window [app_id="python3"] floating enable
 for_window [app_id="blueman"] floating enable
 
 workspace 3
-exec anki
-workspace 2
 exec emacs
-workspace 1
+workspace 2
 exec firefox
+workspace 1
+exec kitty
 
+exec anki
 exec nm-applet --indicator
 exec blueman-applet
 exec flatpak run chat.schildi.desktop --hidden   
