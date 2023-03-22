@@ -1,0 +1,15 @@
+{
+    "name": "Review Heatmap",
+    "package": "1771074083",
+    "ankiweb_id": "1771074083",
+    "author": "Glutanimate",
+    "version": "v1.0.1",
+    "homepage": "https://github.com/glutanimate/review-heatmap",
+    "conflicts": [
+        "review_heatmap",
+        "1722241614",
+        "723520343"
+    ],
+    "mod": 1653397648,
+    "min_point_version": 28
+}

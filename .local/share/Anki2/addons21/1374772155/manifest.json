@@ -1,0 +1,14 @@
+{
+    "name": "Image Occlusion Enhanced",
+    "package": "1374772155",
+    "ankiweb_id": "1374772155",
+    "author": "Glutanimate",
+    "version": "v1.4.0",
+    "homepage": "https://github.com/glutanimate/image-occlusion-enhanced",
+    "conflicts": [
+        "image_occlusion_enhanced"
+    ],
+    "mod": 1649485808,
+    "min_point_version": 50,
+    "max_point_version": 50
+}

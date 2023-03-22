@@ -1,0 +1,11 @@
+{
+    "name": "Insert Symbols As You Type",
+    "package": "2040501954",
+    "ankiweb_id": "2040501954",
+    "author": "jefdongus",
+    "version": "1.3.3",
+    "homepage": "https://github.com/jefdongus/insert-symbols-anki-addon",
+    "conflicts": [
+        "insert_symbols"
+    ]
+}

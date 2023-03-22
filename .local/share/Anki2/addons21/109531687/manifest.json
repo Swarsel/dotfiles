@@ -1,0 +1,12 @@
+{
+    "name": "Cloze Overlapper",
+    "package": "cloze_overlapper",
+    "ankiweb_id": "969733775",
+    "author": "Glutanimate",
+    "version": "v0.4.0-alpha.0-37-g447a63a",
+    "homepage": "https://github.com/glutanimate/cloze-overlapper",
+    "conflicts": [
+        "969733775"
+    ],
+    "mod": 1610232881
+}

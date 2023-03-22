@@ -1,0 +1,1 @@
+{"name": "AnkiConnect", "mod": 1663546263, "min_point_version": 45, "max_point_version": 45, "branch_index": 1, "config": {"apiKey": null, "apiLogPath": null, "ignoreOriginList": [], "webBindAddress": "127.0.0.1", "webBindPort": 8765, "webCorsOriginList": ["http://localhost", "app://obsidian.md"]}}

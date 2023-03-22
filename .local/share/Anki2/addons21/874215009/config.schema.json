@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "Advanced browser",
+  "properties": {
+    "Use a single list for fields": {
+      "type": "boolean",
+      "default": false
+    },
+    "Show internal fields": {
+      "type": "boolean",
+      "default": false
+    },
+    "Table content": {
+      "type": "string",
+      "enum": ["Editable", "Selectable", "No interaction"],
+      "default": "Selectable"
+    },
+    "Column alignment" : {
+      "type": "string",
+      "enum": ["Start", "Center"],
+      "default": "Start"
+    }
+  }
+}
