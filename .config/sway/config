@@ -30,6 +30,7 @@ set $term kitty
 # on the original workspace that the command was run on.
 #set $menu dmenu_path | dmenu | xargs swaymsg exec --
 set $menu wofi --show run -Iib -l 5 -W 500 -x -10 -y -51
+set $eoscommit bash ~/.config/scripts/eoscommit.sh
 
 ### Output configuration
 #
@@ -279,11 +280,12 @@ bindsym $mod+p exec wl-mirror eDP-1
 
 set $exit "exit: [s]leep, [p]oweroff, [r]eboot, [l]ogout"
 mode $exit {
+    
     bindsym --to-code {
         s exec systemctl suspend, mode "default"
-        p exec systemctl poweroff
-        r exec systemctl reboot
-        l exec swaymsg exit
+        p exec bash ~/.config/scripts/poweroff.sh
+        r exec bash ~/.config/scripts/restart.sh
+        l exec bash ~/.config/scripts/logout.sh
         # w exec reboot-to-windows-somehow-lol.sh
     
         Return mode "default"
