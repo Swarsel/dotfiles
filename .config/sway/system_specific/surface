@@ -6,7 +6,7 @@ output eDP-1 {
 
 input * {
    xkb_layout "us"
-   xkb_variant "intl"
+   xkb_variant "altgr-intl"
    xkb_options "grp:win_space_toggle"
 }
 

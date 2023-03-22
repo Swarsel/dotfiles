@@ -1,8 +1,9 @@
 #!/bin/bash 
+su
 
 sudo dnf install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y
 sudo dnf update
-sudo dnf install firefox emacs sway wofi kitten zsh waybar git gh network-manager-applet blueman discord mako flatpak lpf-spotify-client -y
+sudo dnf install firefox emacs sway wofi kitten zsh waybar git gh network-manager-applet blueman discord mako flatpak lpf-spotify-client xournalpp -y
 
 lpf update
 
