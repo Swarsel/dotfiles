@@ -1180,7 +1180,7 @@
       (defun swarsel-magit-fetch-certain-repositories()
         (setq default-directory swarsel-obsidian-directory)
         (magit-fetch-all (magit-fetch-arguments))
-        (magit-pull-from-pushremote (magit-pull-arguments))
+        (magit-pull-from-pushremote (magit-pull-arguments)))
         ;; (setq default-directory swarsel-emacs-directory)
         ;; (magit-fetch-all (magit-fetch-arguments))
         ;; (magit-pull-from-pushremote (magit-pull-arguments)))
