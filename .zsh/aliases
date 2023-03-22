@@ -1,2 +1,7 @@
-#
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias hg='history | grep'
+alias ls='exa -la'
+alias nano='emacsclient -c'
+alias vi='emacsclient	-c'
+alias vim='emacsclient	-c'
+alias magit='emacsclient -nw -c --eval '"'"'(progn (let ((display-buffer-alist `(("^\\*magit: " display-buffer-same-window) ,display-buffer-alist))) (magit-status)) (delete-other-windows))'"'"

@@ -298,6 +298,8 @@ for_window [app_id="python3"] floating enable
 for_window [app_id="blueman"] floating enable
 
 workspace 3
+exec flatpak run chat.schildi.desktop --hidden   
+exec Discord --start-minimized
 exec emacs
 workspace 2
 exec firefox
@@ -307,8 +309,6 @@ exec kitty
 exec anki
 exec nm-applet --indicator
 exec blueman-applet
-exec flatpak run chat.schildi.desktop --hidden   
-exec Discord --start-minimized
 
 exec swaymsg input 7062:6917:NTRG0001:01_1B96:1B05 map_to_output eDP-1
 exec swaymsg input 7062:6917:NTRG0001:01_1B96:1B05_Stylus map_to_output eDP-1

@@ -1188,6 +1188,10 @@
     (add-hook 'emacs-startup-hook 'swarsel-magit-fetch-certain-repositories) 
 #+end_src
 
+** Start emacs server
+#+begin_src emacs-lisp
+
+#+end_src
 * Runtime performance
 #+begin_src emacs-lisp
   ;; Make gc pauses faster by decreasing the threshold.
