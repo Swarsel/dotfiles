@@ -1190,7 +1190,7 @@
 
 ** Start emacs server
 #+begin_src emacs-lisp
-
+(server-start)
 #+end_src
 * Runtime performance
 #+begin_src emacs-lisp
