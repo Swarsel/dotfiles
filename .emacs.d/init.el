@@ -532,7 +532,7 @@
   (org-download-heading-lvl 0)
   (org-download-timestamp "org_%Y%m%d-%H%M%S_")
   ;;(org-image-actual-width 500)
-  (org-download-screenshot-method "flameshot gui --raw > %s")
+  (org-download-screenshot-method "grim -g \"$(slurp)\" %s")
   :bind
   ("C-M-y" . org-download-screenshot)
   :config
