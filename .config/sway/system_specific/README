@@ -1,0 +1,10 @@
+After pulling, you need to create symlinks to these files, depending on which system is running:
+
+Lenovo:
+ln ~/.config.d/sway/system_specific/lenovo /.config.d/sway/config.d/lenovo 
+
+Surface:
+ln ~/.config.d/sway/system_specific/surface /.config.d/sway/config.d/surface
+
+Bigboi:
+ln ~/.config.d/sway/system_specific/bigboi /.config.d/sway/config.d/bigboi
