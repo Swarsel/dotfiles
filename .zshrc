@@ -21,3 +21,4 @@ setopt    incappendhistory  #Immediately append to the history file, not just wh
 
 # make sure emacs server is running
 export ALTERNATE_EDITOR=""
+export PATH=/usr/lib/qt45/qt/bin:/usr/lib/qt45/qt/include:$PATH
