@@ -283,9 +283,9 @@ mode $exit {
     
     bindsym --to-code {
         s exec systemctl suspend, mode "default"
-        p exec bash ~/.config/scripts/eoscommit.sh
-        r exec systemctl reboot
-        l exec swaymsg exit
+        p exec "bash ~/.config/scripts/eoscommit.sh; systemctl poweroff"
+        r exec "bash ~/.config/scripts/eoscommit.sh; systemctl reboot"
+        l exec "bash ~/.config/scripts/eoscommit.sh; swaymsg exit"
         # w exec reboot-to-windows-somehow-lol.sh
     
         Return mode "default"
