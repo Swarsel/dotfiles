@@ -11,5 +11,6 @@ input * {
 }
 
 output * bg ~/.config/wallpaper/lenovowp.png fill
+bindsym $mod+S exec flameshot gui 
 
 
