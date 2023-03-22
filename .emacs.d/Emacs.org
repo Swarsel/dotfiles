@@ -1041,6 +1041,10 @@
 
 (global-set-key (kbd "C-C d") 'duplicate-line)
 #+end_src
+** Prevent breaking of hardlinks
+#+begin_src emacs-lisp
+(setq backup-by-copying-when-linked t)
+#+end_src
 * File Management
 ** Dired
 #+begin_src emacs-lisp

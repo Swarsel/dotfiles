@@ -1,6 +1,15 @@
 
+output eDP-1 {
+   # ...config options...
+   mode 1920x1080
+   scale 1
+   }
+
 input * {
    xkb_layout "de"
    xkb_options "grp:win_space_toggle"
 }
+
+output * bg ~/.config/wallpaper/lenovowp.png fill
+
 

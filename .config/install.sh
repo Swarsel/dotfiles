@@ -1,14 +1,12 @@
 #!/bin/bash 
 
-sudo dnf install firefox
-sudo dnf install sway
-sudo dnf install wofi
-sudo dnf install kitten
-sudo dnf install zsh
-sudo dnf install waybar
-sudo dnf install git
-sudo dnf install gh
+sudo dnf install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y
+sudo dnf update
+sudo dnf install firefox emacs sway wofi kitten zsh waybar git gh network-manager-applet blueman discord mako flatpak lpf-spotify-client -y
 
+lpf update
+
+flatpak install flathub chat.schildi.desktop --hidden   
 
 sudo timedatectl set-ntp yes
 sudo timedatectl set-local-rtc 0

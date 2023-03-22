@@ -34,7 +34,8 @@ set $menu wofi --show run -Iib -l 5 -W 500 -x -10 -y -51
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/.config/wallpaper/surfacewp.png fill
+# swarsel: moved to system specific
+# output * bg ~/.config/wallpaper/surfacewp.png fill
 
 # Remove all borders from applications
 default_border pixel 1
@@ -265,11 +266,12 @@ input type:touchpad {
        middle_emulation enabled
    }
 
-output eDP-1 {
+# swarsel: moved to system specific
+#output eDP-1 {
    # ...config options...
-   mode 2160x1440@59.955Hz
-   scale 1
-   }
+ #  mode 2160x1440@59.955Hz
+  # scale 1
+   #}
 
 bindsym $mod+p exec wl-mirror eDP-1
 
@@ -304,7 +306,7 @@ exec firefox
 
 exec nm-applet --indicator
 exec blueman-applet
-exec flatpak run im.riot.Riot --hidden # run Element
+exec flatpak run chat.schildi.desktop --hidden   
 exec Discord --start-minimized
 
 exec swaymsg input 7062:6917:NTRG0001:01_1B96:1B05 map_to_output eDP-1

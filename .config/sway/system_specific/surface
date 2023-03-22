@@ -1,5 +1,14 @@
+output eDP-1 {
+   # ...config options...
+   mode 2160x1440@59.955Hz
+   scale 1
+   }
+
 input * {
    xkb_layout "us"
    xkb_variant "intl"
    xkb_options "grp:win_space_toggle"
 }
+
+output * bg ~/.config/wallpaper/surfacewp.png fill
+

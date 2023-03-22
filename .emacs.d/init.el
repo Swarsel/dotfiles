@@ -833,6 +833,8 @@
 
 (global-set-key (kbd "C-C d") 'duplicate-line)
 
+(setq backup-by-copying-when-linked t)
+
 (use-package dired
     :ensure nil
     :commands (dired dired-jump)
