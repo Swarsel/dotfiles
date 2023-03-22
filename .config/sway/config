@@ -282,7 +282,7 @@ set $exit "exit: [s]leep, [p]oweroff, [r]eboot, [l]ogout"
 mode $exit {
     
     bindsym --to-code {
-        s exec "bash ~/.config/scripts/eoscommit.sh; systemctl suspend, mode 'default'"
+        s exec "bash ~/.config/scripts/eoscommit.sh; systemctl suspend; mode 'default'"
         p exec "bash ~/.config/scripts/eoscommit.sh; systemctl poweroff"
         r exec "bash ~/.config/scripts/eoscommit.sh; systemctl reboot"
         l exec "bash ~/.config/scripts/eoscommit.sh; swaymsg exit"
