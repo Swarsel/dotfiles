@@ -189,6 +189,22 @@ class AnkiConnect:
         return media
 
 
+    def getModel(self, modelName):
+        model = self.collection().models.byName(modelName)
+        if model is None:
+            raise Exception('model was not found: {}'.format(modelName))
+        return model
+
+
+    def getField(self, modelName, fieldName):
+        model = self.getModel(modelName)
+
+        fieldMap = self.collection().models.fieldMap(model)
+        if fieldName not in fieldMap:
+            raise Exception('field was not found in {}: {}'.format(modelName, fieldName))
+        return fieldMap[fieldName][1]
+
+
     def startEditing(self):
         self.window().requireReset()
 
@@ -334,17 +350,22 @@ class AnkiConnect:
         # Not a duplicate
         return 0
 
+    def raiseNotFoundError(self, errorMsg):
+        if anki_version < (2, 1, 55):
+            raise NotFoundError(errorMsg)
+        raise NotFoundError(errorMsg, None, None, None)
+
     def getCard(self, card_id: int) -> Card:
         try:
             return self.collection().getCard(card_id)
         except NotFoundError:
-            raise NotFoundError('Card was not found: {}'.format(card_id))
+            self.raiseNotFoundError('Card was not found: {}'.format(card_id))
 
     def getNote(self, note_id: int) -> Note:
         try:
             return self.collection().getNote(note_id)
         except NotFoundError:
-            raise NotFoundError('Note was not found: {}'.format(note_id))
+            self.raiseNotFoundError('Note was not found: {}'.format(note_id))
 
     def deckStatsToJson(self, due_tree):
         deckStats = {'deck_id': due_tree.deck_id,
@@ -701,6 +722,9 @@ class AnkiConnect:
         except AttributeError:
             self.media().trash_files([filename])
 
+    @util.api()
+    def getMediaDirPath(self):
+        return os.path.abspath(self.media().dir())
 
     @util.api()
     def addNote(self, note):
@@ -793,6 +817,37 @@ class AnkiConnect:
 
         self.collection().autosave()
         self.stopEditing()
+
+
+    @util.api()
+    def updateNote(self, note):
+        updated = False
+        if 'fields' in note.keys():
+            self.updateNoteFields(note)
+            updated = True
+        if 'tags' in note.keys():
+            self.updateNoteTags(note['id'], note['tags'])
+            updated = True
+        if not updated:
+            raise Exception('Must provide a "fields" or "tags" property.')
+
+
+    @util.api()
+    def updateNoteTags(self, note, tags):
+        if type(tags) == str:
+            tags = [tags]
+        if type(tags) != list or not all([type(t) == str for t in tags]):
+            raise Exception('Must provide tags as a list of strings')
+
+        for old_tag in self.getNoteTags(note):
+            self.removeTags([note], old_tag)
+        for new_tag in tags:
+            self.addTags([note], new_tag)
+
+
+    @util.api()
+    def getNoteTags(self, note):
+        return self.getNote(note).tags
 
 
     @util.api()
@@ -1070,6 +1125,34 @@ class AnkiConnect:
 
 
     @util.api()
+    def modelFieldDescriptions(self, modelName):
+        model = self.collection().models.byName(modelName)
+        if model is None:
+            raise Exception('model was not found: {}'.format(modelName))
+        else:
+            try:
+                return [field['description'] for field in model['flds']]
+            except KeyError:
+                # older versions of Anki don't have field descriptions
+                return ['' for field in model['flds']]
+
+
+    @util.api()
+    def modelFieldFonts(self, modelName):
+        model = self.getModel(modelName)
+
+        fonts = {}
+        for field in model['flds']:
+
+            fonts[field['name']] = {
+                'font': field['font'],
+                'size': field['size'],
+            }
+
+        return fonts
+
+
+    @util.api()
     def modelFieldsOnTemplates(self, modelName):
         model = self.collection().models.byName(modelName)
         if model is None:
@@ -1188,14 +1271,8 @@ class AnkiConnect:
     @util.api()
     def modelFieldRename(self, modelName, oldFieldName, newFieldName):
         mm = self.collection().models
-        model = mm.byName(modelName)
-        if model is None:
-            raise Exception('model was not found: {}'.format(modelName))
-
-        fieldMap = mm.fieldMap(model)
-        if oldFieldName not in fieldMap:
-            raise Exception('field was not found in {}: {}'.format(modelName, oldFieldName))
-        field = fieldMap[oldFieldName][1]
+        model = self.getModel(modelName)
+        field = self.getField(modelName, oldFieldName)
 
         mm.renameField(model, field, newFieldName)
 
@@ -1205,14 +1282,8 @@ class AnkiConnect:
     @util.api()
     def modelFieldReposition(self, modelName, fieldName, index):
         mm = self.collection().models
-        model = mm.byName(modelName)
-        if model is None:
-            raise Exception('model was not found: {}'.format(modelName))
-
-        fieldMap = mm.fieldMap(model)
-        if fieldName not in fieldMap:
-            raise Exception('field was not found in {}: {}'.format(modelName, fieldName))
-        field = fieldMap[fieldName][1]
+        model = self.getModel(modelName)
+        field = self.getField(modelName, fieldName)
 
         mm.repositionField(model, field, index)
 
@@ -1222,9 +1293,7 @@ class AnkiConnect:
     @util.api()
     def modelFieldAdd(self, modelName, fieldName, index=None):
         mm = self.collection().models
-        model = mm.byName(modelName)
-        if model is None:
-            raise Exception('model was not found: {}'.format(modelName))
+        model = self.getModel(modelName)
 
         # only adds the field if it doesn't already exist
         fieldMap = mm.fieldMap(model)
@@ -1244,18 +1313,56 @@ class AnkiConnect:
     @util.api()
     def modelFieldRemove(self, modelName, fieldName):
         mm = self.collection().models
-        model = mm.byName(modelName)
-        if model is None:
-            raise Exception('model was not found: {}'.format(modelName))
-
-        fieldMap = mm.fieldMap(model)
-        if fieldName not in fieldMap:
-            raise Exception('field was not found in {}: {}'.format(modelName, fieldName))
-        field = fieldMap[fieldName][1]
+        model = self.getModel(modelName)
+        field = self.getField(modelName, fieldName)
 
         mm.removeField(model, field)
 
         self.save_model(mm, model)
+
+
+    @util.api()
+    def modelFieldSetFont(self, modelName, fieldName, font):
+        mm = self.collection().models
+        model = self.getModel(modelName)
+        field = self.getField(modelName, fieldName)
+
+        if not isinstance(font, str):
+            raise Exception('font should be a string: {}'.format(font))
+
+        field['font'] = font
+
+        self.save_model(mm, model)
+
+
+    @util.api()
+    def modelFieldSetFontSize(self, modelName, fieldName, fontSize):
+        mm = self.collection().models
+        model = self.getModel(modelName)
+        field = self.getField(modelName, fieldName)
+
+        if not isinstance(fontSize, int):
+            raise Exception('fontSize should be an integer: {}'.format(fontSize))
+
+        field['size'] = fontSize
+
+        self.save_model(mm, model)
+
+
+    @util.api()
+    def modelFieldSetDescription(self, modelName, fieldName, description):
+        mm = self.collection().models
+        model = self.getModel(modelName)
+        field = self.getField(modelName, fieldName)
+
+        if not isinstance(description, str):
+            raise Exception('description should be a string: {}'.format(description))
+
+        if 'description' in field: # older versions do not have the 'description' key
+            field['description'] = description
+            self.save_model(mm, model)
+            return True
+        return False
 
 
     @util.api()
@@ -1371,6 +1478,20 @@ class AnkiConnect:
             startID,
             self.decks().id(deck)
         )
+
+
+    @util.api()
+    def getReviewsOfCards(self, cards):
+        COLUMNS = ['id', 'usn', 'ease', 'ivl', 'lastIvl', 'factor', 'time', 'type']
+        QUERY = 'select {} from revlog where cid = ?'.format(', '.join(COLUMNS))
+
+        result = {}
+        for card in cards:
+            query_result = self.database().all(QUERY, card)
+            result[card] = [dict(zip(COLUMNS, row)) for row in query_result]
+
+        return result
+
 
 
     @util.api()
