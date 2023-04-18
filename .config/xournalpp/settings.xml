@@ -43,6 +43,8 @@
   <property name="presentationViewModeAttributes" value="goFullscren,showToolbar"/>
   <!--The cursor icon used with a stylus, allowed values are "none", "dot", "big", "arrow"-->
   <property name="stylusCursorType" value="dot"/>
+  <!--The eraser cursor visibility used with a stylus, allowed values are "never", "always", "hover", "touch"-->
+  <property name="eraserVisibility" value="always"/>
   <!--The icon theme, allowed values are "iconsColor", "iconsLucide"-->
   <property name="iconTheme" value="iconsColor"/>
   <property name="highlightPosition" value="false"/>
@@ -58,6 +60,7 @@
   <property name="autoloadMostRecent" value="true"/>
   <property name="autoloadPdfXoj" value="true"/>
   <property name="defaultSaveName" value="%F-Note-%H-%M"/>
+  <property name="defaultPdfExportName" value="%{name}_annotated"/>
   <property name="autosaveEnabled" value="true"/>
   <property name="autosaveTimeout" value="1"/>
   <property name="addHorizontalSpace" value="false"/>
@@ -245,6 +248,8 @@
     <data name="playObject">
       <attribute name="drawingType" type="string" value="default"/>
     </data>
+    <data name="selectMultiLayerRect"/>
+    <data name="selectMultiLayerRegion"/>
     <data name="selectObject">
       <attribute name="drawingType" type="string" value="default"/>
     </data>
