@@ -6,7 +6,7 @@
   <property name="pressureMultiplier" value="1.21"/>
   <property name="zoomGesturesEnabled" value="true"/>
   <property name="selectedToolbar" value="Xournal++ Copy"/>
-  <property name="lastSavePath" value="/home/leons/Documents/GitHub/CSEWS2022/SS2023/NumPDEs/e5"/>
+  <property name="lastSavePath" value="/home/leons/Documents/GitHub/CSEWS2022/SS2023/NumPDEs/e6"/>
   <property name="lastOpenPath" value="/home/leons/Documents/GitHub/CSEWS2022/SS2023/NumPDEs/e4"/>
   <property name="lastImagePath" value="/home/leons/Documents/GitHub/CSEWS2022/AMF/e6"/>
   <property name="edgePanSpeed" value="20"/>
@@ -238,7 +238,7 @@
       <attribute name="drawingType" type="string" value="default"/>
     </data>
     <data name="pen">
-      <attribute name="color" type="hex" value="ff8000"/>
+      <attribute name="color" type="hex" value="808080"/>
       <attribute name="drawingType" type="string" value="default"/>
       <attribute name="fill" type="int" value="0"/>
       <attribute name="fillAlpha" type="int" value="128"/>
@@ -248,8 +248,12 @@
     <data name="playObject">
       <attribute name="drawingType" type="string" value="default"/>
     </data>
-    <data name="selectMultiLayerRect"/>
-    <data name="selectMultiLayerRegion"/>
+    <data name="selectMultiLayerRect">
+      <attribute name="drawingType" type="string" value="default"/>
+    </data>
+    <data name="selectMultiLayerRegion">
+      <attribute name="drawingType" type="string" value="default"/>
+    </data>
     <data name="selectObject">
       <attribute name="drawingType" type="string" value="default"/>
     </data>
