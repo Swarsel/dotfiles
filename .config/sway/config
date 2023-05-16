@@ -199,8 +199,8 @@ gaps inner 5
     # Swap focus between the tiling area and the floating area
     bindsym $mod+space focus mode_toggle
 
-    bindsym $mod+n exec sway output eDP-1 transform normal
-    bindsym $mod+t exec sway output eDP-1 transform 90
+    bindsym $mod+n exec sway output eDP-1 transform normal, splith
+    bindsym $mod+t exec sway output eDP-1 transform 90, splitv
     
 # Move focus to the parent container
     bindsym $mod+a focus parent

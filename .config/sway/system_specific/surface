@@ -12,3 +12,4 @@ input * {
 
 output * bg ~/.config/wallpaper/surfacewp.png fill
 bindsym $mod+S exec grim -g "$(slurp)" -t png - | wl-copy 
+bindsym XF86PowerOff exec swaylock -f

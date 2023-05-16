@@ -122,7 +122,8 @@
 	"disk": {
 		"interval": 5,
 		"format": "Disk {percentage_used:2}%",
-		"path": "/"
+		"path": "/",
+		"on-click": "bash ~/.config/scripts/screenshot.sh" 
 	},
 	"tray": {
 		"icon-size": 20
